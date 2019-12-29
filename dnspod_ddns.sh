@@ -19,7 +19,7 @@ URLIP="Get $DOMAIN URLIP Failed."
 fi
 echo "[URL IP]:$URLIP"
 dnscmd="nslookup";type nslookup >/dev/null 2>&1||dnscmd="ping -c1"
-DNSTEST=$($dnscmd $host.$domain)
+DNSTEST=$($dnscmd $host.$domain 119.29.29.29)
 if [ "$?" != 0 ]&&[ "$dnscmd" == "nslookup" ]||(echo $DNSTEST |grep -qEvo "$IPREX");then
 DNSIP="Get $host.$domain DNS Failed."
 else DNSIP=$(echo $DNSTEST|grep -Eo "$IPREX"|tail -n1)
